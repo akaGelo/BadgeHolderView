@@ -13,7 +13,7 @@ Custom ViewGroup for browse badge with count of some products
 
 # Download
 
-For project API 19+.
+For project API 16+.
 
 ## Gradle
 
