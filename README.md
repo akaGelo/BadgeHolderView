@@ -18,7 +18,7 @@ For project API 19+.
 ## Gradle
 
 ```gradle
-compile 'com.steelkiwi:badge-holder-view:1.1.1'
+compile 'com.steelkiwi:badge-holder-view:1.1.2'
 ```
 
 # Usage
