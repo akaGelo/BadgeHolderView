@@ -6,7 +6,11 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.RectF;
 import android.graphics.Typeface;
+import android.graphics.drawable.shapes.RoundRectShape;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -78,13 +82,15 @@ public class BadgeView extends View {
     }
 
     private void drawBadgeBackground(final Canvas canvas) {
-        canvas.drawRoundRect(0f, 0f, getWidth(), getHeight(), getCornerRadius(), getCornerRadius(), badgePaint);
+        RectF rectf= new RectF(0, 0, getWidth(), getHeight());
+        canvas.drawRoundRect(rectf,getCornerRadius(),getCornerRadius(), badgePaint);
     }
+
 
     private int reconcileSize(int contentSize, int measureSpec) {
         final int mode = MeasureSpec.getMode(measureSpec);
         final int specSize = MeasureSpec.getSize(measureSpec);
-        switch(mode) {
+        switch (mode) {
             case MeasureSpec.EXACTLY:
                 return specSize;
             case MeasureSpec.AT_MOST:
@@ -100,7 +106,7 @@ public class BadgeView extends View {
     }
 
     public void increment() {
-        if(isAnimationFinish()) {
+        if (isAnimationFinish()) {
             setAnimationFinish(false);
             // check where is need draw next count text
             countDrawable.setIncrement(true);
@@ -125,7 +131,7 @@ public class BadgeView extends View {
     }
 
     public void decrement() {
-        if(isAnimationFinish() && getCurrentBadgeCount() > 0) {
+        if (isAnimationFinish() && getCurrentBadgeCount() > 0) {
             setAnimationFinish(false);
             // check where is need draw next count
             countDrawable.setIncrement(false);
@@ -137,7 +143,7 @@ public class BadgeView extends View {
 
                         @Override
                         public void onAnimationEnd(Animator animation) {
-                            if(getCurrentBadgeCount() > 0) {
+                            if (getCurrentBadgeCount() > 0) {
                                 currentBadgeCount--;
                                 setNextBadgeCount(getCurrentBadgeCount() - 1);
                             } else {
@@ -172,12 +178,12 @@ public class BadgeView extends View {
         countDrawable.setBadgeCount(getCurrentBadgeCount(), getNextBadgeCount());
         invalidate();
         // animate count drawable
-        if(getCurrentBadgeCount() > count) {
+        if (getCurrentBadgeCount() > count) {
             // animate count drawable when user increment more than one points
             incrementWith();
         } else {
             // animate count drawable when user decrement more than one points
-           decrementWith();
+            decrementWith();
         }
     }
 
@@ -193,7 +199,7 @@ public class BadgeView extends View {
     }
 
     private void incrementWith() {
-        if(isAnimationFinish() && getCurrentBadgeCount() > 0) {
+        if (isAnimationFinish() && getCurrentBadgeCount() > 0) {
             setAnimationFinish(false);
             // check where is need draw next count
             countDrawable.setIncrement(false);
@@ -214,7 +220,7 @@ public class BadgeView extends View {
     }
 
     private void decrementWith() {
-        if(isAnimationFinish()) {
+        if (isAnimationFinish()) {
             setAnimationFinish(false);
             // check where is need draw next count text
             countDrawable.setIncrement(true);

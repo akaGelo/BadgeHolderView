@@ -25,8 +25,8 @@ task clean(type: Delete) {
 }
 
 ext {
-    userOrg = 'soulyaroslav'
-    groupId = 'com.steelkiwi'
+    userOrg = 'vyukov'
+    groupId = 'ru.vyukov'
     uploadName = 'badge-holder-view'
     description = 'ViewGroup for browse badge view with count of some products'
     publishVersion = '1.1.1'
